@@ -20,6 +20,12 @@ const assignment = {
       assignment.title = newTitle;
       res.json(assignment);
     });
+    app.get("/lab5/module", (req, res) => {
+      res.json(module);
+    });
+    app.get("/lab5/module/name", (req, res) => {
+      res.json(module.name);
+    });
   
   
   };

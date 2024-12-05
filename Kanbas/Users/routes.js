@@ -36,7 +36,6 @@ export default function UserRoutes(app) {
 
       };
       app.get("/api/users/:userId", findUserById);
-  const createUser = (req, res) => { };
   const deleteUser = async (req, res) => {
     const status = await dao.deleteUser(req.params.userId);
     res.json(status);
@@ -66,6 +65,13 @@ app.delete("/api/users/:userId", deleteUser);
 
 
   };
+
+
+  const createUser = async (req, res) => {
+    const user = await dao.createUser(req.body);
+    res.json(user);
+  };
+
 
 
   const signup = async (req, res) => {

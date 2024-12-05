@@ -22,7 +22,7 @@
 
 import model from "./model.js";
 
-export const createUser = (user) => {} // implemented later
+
 const findAllUsers = async (req, res) => {
   const { role } = req.query;
   if (role) {
@@ -47,6 +47,12 @@ export const findUsersByPartialName = (partialName) => {
     $or: [{ firstName: { $regex: regex } }, { lastName: { $regex: regex } }],
   });
 };
+
+export const createUser = (user) => {
+  delete user._id
+  return model.create(user);
+}
+
 
 export const updateUser = (userId, user) => model.updateOne({ _id: userId }, { $set: user });
 

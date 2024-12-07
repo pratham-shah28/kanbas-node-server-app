@@ -14,10 +14,4 @@ export function unenrollUserFromCourse(user, course) {
  return model.deleteOne({ user, course });
 }
 
-export function enrollUserInCourse(user, course) {
-  return model.create({ user, course });
- }
- export function unenrollUserFromCourse(user, course) {
-  return model.deleteOne({ user, course });
- }
  

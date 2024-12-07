@@ -1,4 +1,4 @@
-import * as enrollmentsDao from "./dao.js";
+import * as enrollmentsDao from "./dao.js"
 
 export default function EnrollmentRoutes(app) {
     app.post("/api/enrollments", async (req, res) => {

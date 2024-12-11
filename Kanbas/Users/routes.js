@@ -102,7 +102,7 @@ app.delete("/api/users/:userId", deleteUser);
     res.sendStatus(200);
   };
 
-  const findCoursesForEnrolledUser = (req, res) => {
+  const findCoursesForEnrolledUser = async (req, res) => {
     let { userId } = req.params;
     if (userId === "current") {
       const currentUser = req.session["currentUser"];
@@ -112,7 +112,10 @@ app.delete("/api/users/:userId", deleteUser);
       }
       userId = currentUser._id;
     }
-    const courses = courseDao.findCoursesForEnrolledUser(userId);
+    const courses = await courseDao.findCoursesForEnrolledUser(userId);
+    //const courses = enrollmentsDao.findCoursesForUser(userId);
+    console.log("bhadwesh")
+    console.log(courses)
     res.json(courses);
   };
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);

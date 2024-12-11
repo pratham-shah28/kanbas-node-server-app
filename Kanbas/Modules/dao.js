@@ -11,6 +11,7 @@ export function createModule(module) {
     // const newModule = { ...module, _id: Date.now().toString() };
     // Database.modules = [...Database.modules, newModule];
     // return newModule;
+    console.log("HERE")
     delete module._id
     return model.create(module);
   }

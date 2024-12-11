@@ -1,5 +1,7 @@
 import Database from "../Database/index.js";
 import model from "./model.js";
+import enrollmentModel from "../Enrollments/model.js";
+// Use a different alias
 // export function deleteCourse(courseId) {
 //   const { courses, enrollments } = Database;
 //   Database.courses = courses.filter((course) => course._id !== courseId);
@@ -7,6 +9,7 @@ import model from "./model.js";
 //     (enrollment) => enrollment.course !== courseId
 //   );
 // }
+
 
 export function deleteCourse(courseId) {
   return model.deleteOne({ _id: courseId });
@@ -16,15 +19,21 @@ export function deleteCourse(courseId) {
 export function findAllCourses() {
   return model.find();
 }
-export function findCoursesForEnrolledUser(userId) {
-  const { courses, enrollments } = Database;
-  const enrolledCourses = courses.filter((course) =>
-    enrollments.some(
-      (enrollment) =>
-        enrollment.user === userId && enrollment.course === course._id
-    )
-  );
-  return enrolledCourses;
+export async function findCoursesForEnrolledUser(userId) {
+  try {
+    const enrollments = await enrollmentModel.find({ user:userId });
+    //console.log(enrollments)
+    // Extract course IDs from the enrollments
+    const courseIds = enrollments.map(enrollment => enrollment.course);
+
+    // Fetch courses corresponding to the course IDs
+    return model.find({
+      _id: { $in: courseIds },
+    });
+  } catch (error) {
+    console.error("Error fetching courses for enrolled user:", error);
+    throw error; // Optionally throw or handle error as needed
+  }
 }
 export function createCourse(course) {
   //delete course._id;

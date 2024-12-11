@@ -16,7 +16,7 @@ export default function AssignmentRoutes(app) {
 
     app.get("/api/assignments/:assignmentId",(req, res) => {
         const { assignmentId } = req.params;
-        const data = dao.findAssignment(assignmentId);
+        const data = assignmentDao.findAssignment(assignmentId);
         if(data.length > 0){
             res.send(data[0]);
         }

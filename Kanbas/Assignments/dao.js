@@ -22,3 +22,10 @@ export function deleteAssignment(assignmentId) {
     const { assignments } = Database;
     Database.assignments = assignments.filter(a => a._id !== assignmentId);
 }
+
+export function findAssignment(assignmentId) {
+    const { assignments } = Database;
+    const assignment = assignments.find((assignment) => assignment._id === assignmentId);
+    return assignment;
+
+}

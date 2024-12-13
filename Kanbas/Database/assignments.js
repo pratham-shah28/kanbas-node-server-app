@@ -7,5 +7,5 @@ export default [
   { "_id": "A203", "title": "Heating Analysis", "course": "RS102" },
   { "_id": "A301", "title": "Structural Design Task", "course": "RS103" },
   { "_id": "A302", "title": "Orbital Calculations", "course": "RS103" },
-  { "_id": "A303", "title": "Systems Engineering Exam", "course": "RS103" }
+  { "_id": "A303", "title": "Systems Engineering Exam", "course": "RS103" },
 ];

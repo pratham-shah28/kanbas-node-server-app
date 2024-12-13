@@ -22,17 +22,7 @@
 
 import model from "./model.js";
 
-
-const findAllUsers = async (req, res) => {
-  const { role } = req.query;
-  if (role) {
-    const users = await dao.findUsersByRole(role);
-    res.json(users);
-    return;
-  }
-  const users = await dao.findAllUsers();
-  res.json(users);
-};
+export const findAllUsers = () => model.find();
 
 export const findUserById = (userId) => model.findById(userId);
 

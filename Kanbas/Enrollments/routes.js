@@ -41,7 +41,7 @@ export default function EnrollmentRoutes(app) {
     //     res.json(newEnrollment);
     //   });
     app.post("/api/enrollments", async (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         const { userId, courseId } = req.body;
         const status = await enrollmentsDao.enrollUserInCourse(userId, courseId);
         res.send(status);

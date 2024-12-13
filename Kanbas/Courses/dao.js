@@ -36,12 +36,8 @@ export async function findCoursesForEnrolledUser(userId) {
   }
 }
 export function createCourse(course) {
-  //delete course._id;
-  course._id = new Date().getTime().toString()
+  delete course._id;
   return model.create(course);
-  // const newCourse = { ...course, _id: Date.now().toString() };
-  // Database.courses = [...Database.courses, newCourse];
-  // return newCourse;
 }
 export function updateCourse(courseId, courseUpdates) {
   return model.updateOne({ _id: courseId }, { $set: courseUpdates });
